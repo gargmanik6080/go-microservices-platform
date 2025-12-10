@@ -37,3 +37,4 @@ frontApp
 *App
 mongo/
 *.wt
+db-data/
