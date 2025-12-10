@@ -74,7 +74,7 @@ services:
 
 
   mongo:
-    image: 'mongo:4.2.16-bionic'
+    image: 'mongo:8-noble'
     ports:
     - "27017:27017"
     environment:
