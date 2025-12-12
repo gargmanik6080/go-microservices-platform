@@ -21,7 +21,6 @@ services:
     deploy:
       mode: replicated
       replicas: 1
-
   
   authentication-service:
     build:
@@ -54,7 +53,13 @@ services:
       FROM_NAME: "Manik Garg"
       FROM_ADDRESS: "manikgarg@example.com"
 
-
+  listener-seervice:
+    build:
+      context: listener-service
+      dockerfile: listener-service.dockerfile
+    deploy:
+      mode: replicated
+      replicas: 1
 
 ## DBs
   postgres:
@@ -72,9 +77,8 @@ services:
     volumes:
     - ./db-data/postgres/:/var/lib/postgresql/data/
 
-
   mongo:
-    image: 'mongo:8-noble'
+    image: 'mongo:8.2.2'
     ports:
     - "27017:27017"
     environment:
@@ -90,3 +94,13 @@ services:
     - "1025:1025"
     - "8025:8025"
     
+  rabbitmq:
+    image: 'rabbitmq:4.2.1-alpine'
+    ports:
+    - '5672:5672'
+    deploy:
+      mode: replicated
+      replicas: 1
+    volumes:
+    - ./db-data/rabbitmq/:/var/lib/rabbitmq
+  
