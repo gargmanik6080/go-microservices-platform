@@ -53,7 +53,7 @@ services:
       FROM_NAME: "Manik Garg"
       FROM_ADDRESS: "manikgarg@example.com"
 
-  listener-seervice:
+  listener-service:
     build:
       context: listener-service
       dockerfile: listener-service.dockerfile
