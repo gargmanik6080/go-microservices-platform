@@ -23,6 +23,9 @@ down:
 	docker-compose down
 	@echo "Stopped"
 
+build_all: build_broker build_auth build_logger build_mailer build_listener build_front
+	@echo "All binary files built!!!"
+
 build_broker: 
 	@echo "Building broker binary..."
 	cd broker-service && env GOOS=linux CGO_ENABLED=0 go build -o ${BROKER_BINARY} ./cmd/api

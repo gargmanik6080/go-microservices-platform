@@ -4,7 +4,7 @@ services:
   broker-service:
     build:
       context: ./broker-service
-      dockerfile: broker-service.dockerfile
+      dockerfile: Dockerfile
 
     restart: always
     ports:
@@ -16,7 +16,7 @@ services:
   logger-service:
     build:
       context: ./logger-service
-      dockerfile: logger-service.dockerfile
+      dockerfile: Dockerfile
     restart: always
     deploy:
       mode: replicated
@@ -25,7 +25,7 @@ services:
   authentication-service:
     build:
       context: authentication-service
-      dockerfile: authentication-service.dockerfile
+      dockerfile: Dockerfile
     restart: always
     ports:
     - "8081:80"
@@ -38,7 +38,7 @@ services:
   mail-service:
     build:
       context: mail-service
-      dockerfile: mail-service.dockerfile
+      dockerfile: Dockerfile
     restart: always
     deploy:
       mode: replicated
@@ -56,7 +56,7 @@ services:
   listener-service:
     build:
       context: listener-service
-      dockerfile: listener-service.dockerfile
+      dockerfile: Dockerfile
     deploy:
       mode: replicated
       replicas: 1

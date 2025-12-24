@@ -16,6 +16,7 @@ spec:
       containers:
       - name: frontend
         image: gargmanik6080/frontend:1.0.1
+        imagePullPolicy: Always
         ports:
         - containerPort: 8081
         env:
