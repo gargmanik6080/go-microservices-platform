@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mail-service
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mail-service
+  template:
+    metadata:
+      labels:
+        app: mail-service
+    spec:
+      containers:
+      - name: mail-service
+        image: gargmanik6080/mail-service:1.0.1
+        imagePullPolicy: Always
+        env:
+        - name: MAIL_DOMAIN
+          value: "logs"
+        - name: MAIL_HOST
+          value: "mailhog"
+        - name: MAIL_PORT
+          value: "1025"
+        - name: MAIL_USERNAME
+          value: ""
+        - name: MAIL_PASSWORD
+          value: ""
+        - name: MAIL_ENCRYPTION
+          value: "none"
+        - name: FROM_NAME
+          value: "Manik Garg"
+        - name: FROM_ADDRESS
+          value: "manikgarg@example.com"
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mail-service
+spec:
+  selector:
+    app: mail-service
+  ports:
+  - protocol: TCP
+    name: main-port
+    port: 80
+    targetPort: 80

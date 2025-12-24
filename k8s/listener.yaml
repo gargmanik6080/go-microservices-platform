@@ -1,43 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: broker-service
+  name: listener-service
 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: broker-service
+      app: listener-service
   template:
     metadata:
       labels:
-        app: broker-service
+        app: listener-service
     spec:
       containers:
-      - name: broker-service
-        image: gargmanik6080/broker-service:1.0.3
+      - name: listener-service
+        image: gargmanik6080/listener-service:1.0.1
         ports:
-        - containerPort: 8080
+        - containerPort: 80
+
         resources:
           requests:
             memory: "64Mi"
             cpu: "250m"
           limits:
-            memory: "256Mi"
+            memory: "128Mi"
             cpu: "500m"
-
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: broker-service
+  name: listener-service
 spec:
   selector:
-    app: broker-service
+    app: listener-service
   ports:
   - protocol: TCP
-    name: main-port
-    port: 8080
-    targetPort: 8080
+    name: web-port
+    port: 80
+    targetPort: 80
