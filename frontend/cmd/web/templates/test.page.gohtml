@@ -48,7 +48,7 @@
                 method: 'POST',
             }
 
-            fetch("http:\/\/localhost:8080", body)
+            fetch({{.BrokerURL}}, body)
             .then((res) => res.json())
             .then((data) => {
                 sent.innerHTML = "Empty post request";

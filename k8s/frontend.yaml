@@ -15,13 +15,13 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: gargmanik6080/frontend:1.0.1
+        image: gargmanik6080/frontend:1.0.4
         imagePullPolicy: Always
         ports:
         - containerPort: 8081
         env:
         - name: BROKER_URL
-          value: "http://backend"
+          value: "http://broker-service.info"
         resources:
           requests:
             memory: "64Mi"
@@ -43,5 +43,5 @@ spec:
   ports:
   - protocol: TCP
     name: main-port
-    port: 8080
-    targetPort: 8080
+    port: 8081
+    targetPort: 8081
